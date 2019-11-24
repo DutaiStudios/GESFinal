@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\camMouseLook.cs" />
     <Compile Include="Assets\Scripts\CharacterController.cs" />
+    <Compile Include="Assets\Scripts\grabInspect.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Owner/Documents/GitHub/GESFinal/GESFinal/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

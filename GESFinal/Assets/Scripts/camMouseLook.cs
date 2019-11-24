@@ -8,7 +8,8 @@ public class camMouseLook : MonoBehaviour
     Vector2 smoothV;
     public float sensativity = 5.0f;
     public float smoothing = 2.0f;
-
+    [SerializeField] float crouch;
+    Camera mCam;
     GameObject character;
     // Start is called before the first frame update
     void Start()
@@ -27,5 +28,21 @@ public class camMouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+
+        GetCrouch();
+    }
+
+    
+    private void GetCrouch()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("E pressed");
+            transform.Translate(0, crouch, 0);
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            transform.Translate(0, -crouch, 0);
+        }
     }
 }
