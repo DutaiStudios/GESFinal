@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
@@ -7,7 +8,9 @@ public class CharacterController : MonoBehaviour
     public float speed = 10.0f;
     Rigidbody rb;
     public bool isGrounded = true;
+    public Text hasescape;
 
+    public string escapeval = "negative";
 
     public float tempjumptimer = 0;
     //TEMPJUMPTIMER is a placeholder
@@ -23,6 +26,7 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TextUpdate();
 
         float translation = Input.GetAxis("Vertical") * speed;
         float straffe = Input.GetAxis("Horizontal") * speed;
@@ -53,6 +57,11 @@ public class CharacterController : MonoBehaviour
             }
         }
 
+    }
+
+    public void TextUpdate()
+    {
+        hasescape.text = "Escape Status - " + escapeval;
     }
 
 }
