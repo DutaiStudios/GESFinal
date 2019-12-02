@@ -11,6 +11,7 @@ public class Lock : MonoBehaviour
     [SerializeField] grabInspect g_inspect;
 
     private bool hasplayed = false;
+    private bool unlockedonce = false;
 
     private void Start()
     {
@@ -26,7 +27,8 @@ public class Lock : MonoBehaviour
 
             particleplay();
             g_inspect.canmove = true;
-            unlock_collider.enabled = false;
+            disablecollider();
+            unlockedonce = true;
             GetComponent<Rigidbody>().useGravity = true;
             unlock_collider.enabled = true;
             hasplayed = true;
@@ -45,5 +47,14 @@ public class Lock : MonoBehaviour
 
         }
        
+    }
+
+    void disablecollider()
+    {
+        if (unlockedonce == false)
+        {
+        unlock_collider.enabled = false;
+        }
+
     }
 }

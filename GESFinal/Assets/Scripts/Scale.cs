@@ -8,14 +8,26 @@ public class Scale : MonoBehaviour
 
     [SerializeField] Text weight_text;
     [SerializeField] CharacterController c_control;
-    [SerializeField] Key keydisable;
-    [SerializeField] Lock lockdisable;
+    [SerializeField] Text hint_text;
 
-    private bool keyweight = false;
-    private bool lockweight = false;
+    [SerializeField] GameObject[] weighed_objects;
+    WeightValue totalval;
+    private float correctweight = 4;
+    private float currweight = 0;
+    private bool dooropen = false;
+    private float doorswing = 90;
 
 
-    private string curweight = "0";
+    [Header("Weighed Objects")]
+
+    [SerializeField] WeightValue Key_weight;
+    [SerializeField] WeightValue Lock_weight;
+    [SerializeField] WeightValue Box1_weight;
+    [SerializeField] WeightValue Box2_weight;
+
+    [SerializeField] GameObject door;
+
+
 
     private void Start()
     {
@@ -23,46 +35,74 @@ public class Scale : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        weight_text.text =  currweight + "lb / 4lb";
+        hint_text.text = "Be precise.";
 
-        weight_text.text = curweight + "lb / 4lb";
-
-        if (keyweight == true && lockweight == true)
+        if (currweight == correctweight)
         {
-            curweight = "4";
-            c_control.escapeval = "positive!";
-            keydisable.enabled = false;
-            lockdisable.enabled = false;
+            if (dooropen == false)
+            {
+                door.transform.Rotate(0,doorswing,0);
+                dooropen = true;
+            }
+            else if (dooropen == true)
+            {
+
+            }
+
         }
+
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Key")
+        if (collision.gameObject.name == "Key")
         {
-            curweight = ".5";
-            keyweight = true;
+            currweight += Key_weight.Weight;
         }
 
-        if (collision.gameObject.tag == "Lock")
+        if (collision.gameObject.name == "Padlock")
         {
-            curweight = "3.5";
-            lockweight = true;
+            currweight += Lock_weight.Weight;
+        }
+        
+        if (collision.gameObject.name == "L_Box")
+        {
+            currweight += Box1_weight.Weight;
         }
 
+        if (collision.gameObject.name == "S_Box")
+        {
+            currweight += Box2_weight.Weight;
+        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Key")
+        if (collision.gameObject.name == "Key")
         {
-            curweight = "0";
-            keyweight = false;
+            currweight -= Key_weight.Weight;
         }
 
-        if (collision.gameObject.tag == "Lock")
+        if (collision.gameObject.name == "Padlock")
         {
-            curweight = "0";
-            lockweight = false;
+            currweight -= Lock_weight.Weight;
+        }
+
+        if (collision.gameObject.name == "L_Box")
+        {
+            currweight -= Box1_weight.Weight;
+        }
+
+        if (collision.gameObject.name == "S_Box")
+        {
+            currweight -= Box2_weight.Weight;
         }
     }
+
+
+
 }

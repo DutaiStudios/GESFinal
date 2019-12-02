@@ -7,6 +7,7 @@ public class grabInspect : MonoBehaviour
 {
     public bool canmove;
     public Transform insp_pos;
+    [SerializeField] Image reticle;
 
     void OnMouseDown()
     {
@@ -30,5 +31,10 @@ public class grabInspect : MonoBehaviour
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         }
+    }
+
+    private void OnMouseOver()
+    {
+        
     }
 }

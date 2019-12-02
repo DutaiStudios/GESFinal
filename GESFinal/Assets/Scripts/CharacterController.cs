@@ -26,7 +26,6 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TextUpdate();
 
         float translation = Input.GetAxis("Vertical") * speed;
         float straffe = Input.GetAxis("Horizontal") * speed;
@@ -59,9 +58,5 @@ public class CharacterController : MonoBehaviour
 
     }
 
-    public void TextUpdate()
-    {
-        hasescape.text = "Escape Status - " + escapeval;
-    }
 
 }
