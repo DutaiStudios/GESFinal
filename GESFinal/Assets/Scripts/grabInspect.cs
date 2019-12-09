@@ -8,6 +8,7 @@ public class grabInspect : MonoBehaviour
     public bool canmove;
     public Transform insp_pos;
     [SerializeField] Image reticle;
+    public bool ispickedup;
 
     void OnMouseDown()
     {
@@ -19,7 +20,7 @@ public class grabInspect : MonoBehaviour
             this.transform.position = insp_pos.position;
             this.transform.parent = GameObject.Find("Destination").transform;
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-
+            ispickedup = true;
         }
     }
 

@@ -9,9 +9,11 @@ public class Lock : MonoBehaviour
     [SerializeField] ParticleSystem unlock_particle;
     [SerializeField] Collider unlock_collider;
     [SerializeField] grabInspect g_inspect;
-
+    [SerializeField] string KeyName;
+    [SerializeField] GameObject door;
     private bool hasplayed = false;
     private bool unlockedonce = false;
+    public bool lockoff;
 
     private void Start()
     {
@@ -20,11 +22,11 @@ public class Lock : MonoBehaviour
         g_inspect.canmove = false;
 
     }
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Key")
+        if (collision.gameObject.tag == KeyName)
         {
-
+            lockoff = true;
             particleplay();
             g_inspect.canmove = true;
             disablecollider();
@@ -32,6 +34,7 @@ public class Lock : MonoBehaviour
             GetComponent<Rigidbody>().useGravity = true;
             unlock_collider.enabled = true;
             hasplayed = true;
+
 
         }
     }

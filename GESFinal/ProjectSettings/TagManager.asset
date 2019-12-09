@@ -8,6 +8,10 @@ TagManager:
   - Lock
   - herring
   - herring2
+  - hothandle
+  - ColdHandle
+  - rednoz
+  - bluenoz
   layers:
   - Default
   - TransparentFX
